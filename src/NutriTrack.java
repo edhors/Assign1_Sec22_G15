@@ -1,11 +1,11 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 /* ADD Group Members' details below:
  *  Eduardo Horstmann 1091883
 */ 
 public class NutriTrack {
-    public static void main(String[] args) {
-
+    public static void main(String[] args) {        
         int userChoice;
         do {
             DisplayMenu();
@@ -16,14 +16,18 @@ public class NutriTrack {
                 case 3: SetUpdateNutritionGoals(); break;
                 case 4: ViewNutritionProgress(); break;
                 case 5: GenerateNutritionReports(); break;
-                case 6: NewExtraFunctionality(); break;
+                case 6: ViewLoggedMeals(); break;
 
                 default:
                     System.out.println("Thank you for using CSC301's NutriTrack (A Personal Nutrition Tracker App). Have a healthy day!");
-            }
-        } while (userChoice != 0);
-    }
-
+                }
+            } while (userChoice != 0);
+        }
+    public static ArrayList<Meal> loggedBreakfasts = new ArrayList<>();
+    public static ArrayList<Meal> loggedLunchs = new ArrayList<>();
+    public static ArrayList<Meal> loggedDinner = new ArrayList<>();
+    public static ArrayList<Meal> loggedSnacks = new ArrayList<>();
+    
     public static void DisplayMenu() {
         System.out.println("------------------------------------------------------------");
         System.out.println("Personal Nutrition Tracker System (NutriTrack, Fall 24-25)");
@@ -33,7 +37,7 @@ public class NutriTrack {
         System.out.println("3. Set or update nutrition goals.");
         System.out.println("4. View progress toward nutrition goals.");
         System.out.println("5. Generate nutrition reports (daily, weekly, monthly)");
-        System.out.println("6. NEW extra functionality of your choice. BE INNOVATIVE.");
+        System.out.println("6. View logged meals.");
         System.out.println("7. BONUS functionalities added here (extra marks).");
         System.out.println("0. Exit");
         System.out.println("------------------------------------------------------------");
@@ -50,26 +54,113 @@ public class NutriTrack {
     }
 
     public static void LogNewMeal() {
-        // To be completed. Feel free to change the input parameters. 
+        Scanner input = new Scanner(System.in);
+        int choice = -1;
+        do {
+            System.out.println("Select meal type:");
+            System.out.println("1. Breakfast");
+            System.out.println("2. Lunch");
+            System.out.println("3. Dinner");
+            System.out.println("4. Snack");
+            try {
+                int mealType = input.nextInt();
+                input.nextLine();
+                System.out.print("Enter the meal name: ");
+                String mealName = input.nextLine();
+                System.out.print("Enter the meal calories:");
+                double calories = input.nextDouble();
+                System.out.print("Enter the meal protein:");
+                double protein = input.nextDouble();
+                System.out.print("Enter the meal carbohydrates:");
+                double carbohydrates = input.nextDouble();
+                System.out.print("Enter the meal fats:");
+                double fats = input.nextDouble();
+                switch (mealType) {
+                    case 1:
+                        loggedBreakfasts.add(new Breakfast(mealName, calories, protein, carbohydrates, fats));
+                        break;
+                    case 2:
+                        loggedLunchs.add(new Lunch(mealName, calories, protein, carbohydrates, fats));
+                        break;
+                    case 3:
+                        loggedDinner.add(new Dinner(mealName, calories, protein, carbohydrates, fats));
+                        break;
+                    case 4:
+                        loggedSnacks.add(new Snack(mealName, calories, protein, carbohydrates, fats));
+                        break;
+                    default:
+                        System.out.println("Invalid meal type selected");
+                        return;
+                }
+                System.out.println("Meal logged successfully");
+            } catch (Exception e) {
+                System.out.println("Invalid input");
+            }
+            input.nextLine();
+            System.out.println("(0 to go back to the main menu, any other number to log another meal):");
+            try {
+                choice = input.nextInt();
+            } catch (Exception e) {
+                System.out.println("");
+            }
+            input.nextLine();
+        } while (choice != 0);
     }
 
     public static void UpdateMeal() {
-        // To be completed. Feel free to change the input parameters. 
+        Scanner input = new Scanner(System.in);
+        int choice;
+        do {
+            System.out.println("(0 to go back to the main menu, any other number to update another meal):");
+            choice = input.nextInt();
+        } while (choice != 0);
     }
 
     public static void SetUpdateNutritionGoals() {
-        // To be completed. Feel free to change the input parameters. 
+        Scanner input = new Scanner(System.in);
+        int choice;
+        do {
+            System.out.println("(0 to go back to the main menu, any other number to update another meal):");
+            choice = input.nextInt();
+        } while (choice != 0);
     }
 
     public static void ViewNutritionProgress() {
-        // To be completed. Feel free to change the input parameters. 
+        Scanner input = new Scanner(System.in);
+        int choice;
+        do {
+            System.out.println("(0 to go back to the main menu, any other number to generate another report):");
+            choice = input.nextInt();
+        } while (choice != 0);
     }
 
     public static void GenerateNutritionReports() {
-        // To be completed. Feel free to change the input parameters. 
+        Scanner input = new Scanner(System.in);
+        int choice;
+        do {
+            System.out.println("(0 to go back to the main menu, any other number to generate another report):");
+            choice = input.nextInt();
+        } while (choice != 0);
     }
 
-    public static void NewExtraFunctionality() {
-        // To be completed. Feel free to change the input parameters. 
+    public static void ViewLoggedMeals() {
+        for (Meal meal : loggedBreakfasts) {
+            meal.displayMeal();
+        }
+        for (Meal meal : loggedLunchs) {
+            meal.displayMeal();
+        }
+        for (Meal meal : loggedDinner) {
+            meal.displayMeal();
+        }
+        for (Meal meal : loggedSnacks) {
+            meal.displayMeal();
+        }
+        Scanner input = new Scanner(System.in);
+        int choice;
+        do {
+            System.out.println("(0 to go back to the main menu, any other number to view logged meals):");
+            choice = input.nextInt();
+        } while (choice != 0);
     }
 }
