@@ -5,6 +5,6 @@ public class Breakfast extends Meal {
 
     @Override
     public void displayMeal() {
-        System.out.println("Breakfast: " + calories + " calories, " + protein + "g protein, " + carbohydrates + "g carbohydrates, " + fats + "g fats");
+        System.out.println("Breakfast: " + mealName + " " + calories + " calories, " + protein + "g protein, " + carbohydrates + "g carbohydrates, " + fats + "g fats");
     }
 }
