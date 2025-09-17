@@ -6,6 +6,7 @@ import java.util.ArrayList;
 */ 
 public class NutriTrack {
     public static void main(String[] args) {        
+        initializeDefaultMeals();
         int userChoice;
         do {
             DisplayMenu();
@@ -57,11 +58,7 @@ public class NutriTrack {
         Scanner input = new Scanner(System.in);
         int choice = -1;
         do {
-            System.out.println("Select meal type:");
-            System.out.println("1. Breakfast");
-            System.out.println("2. Lunch");
-            System.out.println("3. Dinner");
-            System.out.println("4. Snack");
+            DisplayMealTypes();
             try {
                 int mealType = input.nextInt();
                 input.nextLine();
@@ -109,10 +106,84 @@ public class NutriTrack {
 
     public static void UpdateMeal() {
         Scanner input = new Scanner(System.in);
-        int choice;
+        int choice = -1;
         do {
+            DisplayMealTypes();
+            try {
+                int mealType = input.nextInt();
+                input.nextLine();
+                switch (mealType) {
+                    case 1:
+                        for(int i = 0; i < loggedBreakfasts.size(); i++) System.out.println((i+1) + ". " + loggedBreakfasts.get(i).getMealName());      
+                        break;
+                    case 2:
+                        for(int i = 0; i < loggedLunchs.size(); i++) System.out.println((i+1) + ". " + loggedLunchs.get(i).getMealName());      
+                        break;
+                    case 3:
+                        for(int i = 0; i < loggedDinner.size(); i++) System.out.println((i+1) + ". " + loggedDinner.get(i).getMealName());      
+                        break;
+                    case 4:
+                        for(int i = 0; i < loggedSnacks.size(); i++) System.out.println((i+1) + ". " + loggedSnacks.get(i).getMealName());      
+                        break;
+                    default:
+                        break;
+                }
+                System.out.print("Enter the number of the meal to update: ");
+                int mealNumber = input.nextInt() - 1;
+                input.nextLine();
+                System.out.print("Enter the meal name: ");
+                String mealName = input.nextLine();
+                System.out.print("Enter the meal calories:");
+                double calories = input.nextDouble();
+                System.out.print("Enter the meal protein:");
+                double protein = input.nextDouble();
+                System.out.print("Enter the meal carbohydrates:");
+                double carbohydrates = input.nextDouble();
+                System.out.print("Enter the meal fats:");
+                double fats = input.nextDouble();
+                switch (mealType) {
+                    case 1:
+                        loggedBreakfasts.get(mealNumber).setMealName(mealName);
+                        loggedBreakfasts.get(mealNumber).setCalories(calories);
+                        loggedBreakfasts.get(mealNumber).setProtein(protein);
+                        loggedBreakfasts.get(mealNumber).setCarbohydrates(carbohydrates);
+                        loggedBreakfasts.get(mealNumber).setFats(fats);
+                        break;
+                    case 2:
+                        loggedLunchs.get(mealNumber).setMealName(mealName);
+                        loggedLunchs.get(mealNumber).setCalories(calories);
+                        loggedLunchs.get(mealNumber).setProtein(protein);
+                        loggedLunchs.get(mealNumber).setCarbohydrates(carbohydrates);
+                        loggedLunchs.get(mealNumber).setFats(fats);
+                        break;
+                    case 3:
+                        loggedDinner.get(mealNumber).setMealName(mealName);
+                        loggedDinner.get(mealNumber).setCalories(calories);
+                        loggedDinner.get(mealNumber).setProtein(protein);
+                        loggedDinner.get(mealNumber).setCarbohydrates(carbohydrates);
+                        loggedDinner.get(mealNumber).setFats(fats);
+                        break;
+                    case 4:
+                        loggedSnacks.get(mealNumber).setMealName(mealName);
+                        loggedSnacks.get(mealNumber).setCalories(calories);
+                        loggedSnacks.get(mealNumber).setProtein(protein);
+                        loggedSnacks.get(mealNumber).setCarbohydrates(carbohydrates);
+                        loggedSnacks.get(mealNumber).setFats(fats);
+                        break;
+                }
+                System.out.println("Meal updated successfully");
+                System.out.println("(0 to go back to the main menu, any other number to update another meal):");
+            } catch (Exception e) {
+                System.out.println("Invalid input");
+            }
+            input.nextLine();
             System.out.println("(0 to go back to the main menu, any other number to update another meal):");
-            choice = input.nextInt();
+            try {
+                choice = input.nextInt();
+            } catch (Exception e) {
+                System.out.println("");
+            }
+            input.nextLine();
         } while (choice != 0);
     }
 
@@ -141,6 +212,41 @@ public class NutriTrack {
             System.out.println("(0 to go back to the main menu, any other number to generate another report):");
             choice = input.nextInt();
         } while (choice != 0);
+    }
+
+    private static void initializeDefaultMeals() {
+        //default Breakfasts
+        loggedBreakfasts.add(new Breakfast("Oatmeal with Berries", 350, 12, 60, 8));
+        loggedBreakfasts.add(new Breakfast("Scrambled Eggs & Toast", 420, 20, 35, 15));
+        loggedBreakfasts.add(new Breakfast("Greek Yogurt Parfait", 300, 15, 45, 10));
+        loggedBreakfasts.add(new Breakfast("Breakfast Burrito", 550, 25, 65, 20));
+
+        //default Lunches
+        loggedLunchs.add(new Lunch("Grilled Chicken Salad", 450, 35, 25, 12));
+        loggedLunchs.add(new Lunch("Turkey Sandwich", 480, 28, 55, 15));
+        loggedLunchs.add(new Lunch("Quinoa Buddha Bowl", 520, 18, 80, 18));
+        loggedLunchs.add(new Lunch("Tuna Wrap", 400, 30, 45, 14));
+
+        //default Dinners
+        loggedDinner.add(new Dinner("Salmon with Rice", 650, 40, 70, 22));
+        loggedDinner.add(new Dinner("Pasta Primavera", 550, 18, 90, 15));
+        loggedDinner.add(new Dinner("Stir-Fry Tofu", 480, 25, 60, 18));
+        loggedDinner.add(new Dinner("Lean Beef Steak", 600, 45, 40, 25));
+
+        //default Snacks
+        loggedSnacks.add(new Snack("Apple with Peanut Butter", 200, 7, 25, 8));
+        loggedSnacks.add(new Snack("Trail Mix", 180, 6, 20, 10));
+        loggedSnacks.add(new Snack("Protein Smoothie", 250, 20, 30, 5));
+        loggedSnacks.add(new Snack("Hummus with Carrots", 150, 5, 18, 8));
+    }
+
+
+    public static void DisplayMealTypes() {
+        System.out.println("Select meal type:");
+        System.out.println("1. Breakfast");
+        System.out.println("2. Lunch");
+        System.out.println("3. Dinner");
+        System.out.println("4. Snack");
     }
 
     public static void ViewLoggedMeals() {
