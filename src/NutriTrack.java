@@ -301,8 +301,6 @@ public class NutriTrack {
         input.close();
     }
 
-
-    //Ali changes 
      public static void SetUpdateNutritionGoals1() {
     	try {
         Scanner input = new Scanner(System.in);
