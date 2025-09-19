@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 /* ADD Group Members' details below:
 Eduardo Horstmann 1091883
-// Ali Mousa Tanbouz 1088413
+// Ali Mousa Tanbouz 1088413 
 */ 
 public class NutriTrack {
     public static void main(String[] args) {        
@@ -300,6 +300,9 @@ public class NutriTrack {
         } while (choice != 0);
         input.close();
     }
+
+
+    //Ali changes 
      public static void SetUpdateNutritionGoals1() {
     	try {
         Scanner input = new Scanner(System.in);
