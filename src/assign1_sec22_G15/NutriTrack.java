@@ -5,7 +5,9 @@ import java.util.ArrayList;
 
 /* ADD Group Members' details below:
 Eduardo Horstmann 1091883
-Ali Mousa Tanbouz 1088413
+Ali Mousa Tanbouz 1088413  SetUpdateNutritionGoals ,  ViewNutritionProgress1(),GenerateNutritionReports1() methods
+
+
 */ 
 public class NutriTrack {
     public static void main(String[] args) {        
@@ -344,6 +346,7 @@ public class NutriTrack {
          currentNutrition.getDinner().displayMeal();
          currentNutrition.getSnack().displayMeal();
     }}
+
 
 
 
