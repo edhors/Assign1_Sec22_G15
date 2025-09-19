@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 /* ADD Group Members' details below:
- *  Eduardo Horstmann 1091883
+Eduardo Horstmann 1091883
 */ 
 public class NutriTrack {
     public static void main(String[] args) {        
@@ -18,17 +18,20 @@ public class NutriTrack {
                 case 4: ViewNutritionProgress(); break;
                 case 5: GenerateNutritionReports(); break;
                 case 6: ViewLoggedMeals(); break;
-
+                case 7: SetUpdateCurrentNutrition(); break;
                 default:
                     System.out.println("Thank you for using CSC301's NutriTrack (A Personal Nutrition Tracker App). Have a healthy day!");
-                }
-            } while (userChoice != 0);
-        }
+            }
+        } while (userChoice != 0);
+    }
+    
     public static ArrayList<Meal> loggedBreakfasts = new ArrayList<>();
     public static ArrayList<Meal> loggedLunchs = new ArrayList<>();
     public static ArrayList<Meal> loggedDinner = new ArrayList<>();
     public static ArrayList<Meal> loggedSnacks = new ArrayList<>();
-    
+    public static NutritionGoals nutritionGoals = new NutritionGoals(0, 0, 0, 0);
+    public static CurrentNutrition currentNutrition = new CurrentNutrition(null, null, null, null);
+
     public static void DisplayMenu() {
         System.out.println("------------------------------------------------------------");
         System.out.println("Personal Nutrition Tracker System (NutriTrack, Fall 24-25)");
@@ -39,7 +42,7 @@ public class NutriTrack {
         System.out.println("4. View progress toward nutrition goals.");
         System.out.println("5. Generate nutrition reports (daily, weekly, monthly)");
         System.out.println("6. View logged meals.");
-        System.out.println("7. BONUS functionalities added here (extra marks).");
+        System.out.println("7. Set or update current nutrition.");
         System.out.println("0. Exit");
         System.out.println("------------------------------------------------------------");
     }
@@ -51,6 +54,7 @@ public class NutriTrack {
             System.out.println("Your Choice (0-7):");
             choice = input.nextInt();
         } while (choice > 7);
+        input.close();
         return choice;
     }
 
@@ -102,6 +106,7 @@ public class NutriTrack {
             }
             input.nextLine();
         } while (choice != 0);
+        input.close();
     }
 
     public static void UpdateMeal() {
@@ -185,15 +190,22 @@ public class NutriTrack {
             }
             input.nextLine();
         } while (choice != 0);
+        input.close();
     }
 
     public static void SetUpdateNutritionGoals() {
         Scanner input = new Scanner(System.in);
-        int choice;
+        int choice = -1;
+        
         do {
-            System.out.println("(0 to go back to the main menu, any other number to update another meal):");
-            choice = input.nextInt();
+            try {
+                
+            } catch (Exception e) {
+                System.out.println("");
+            }
+            input.nextLine();
         } while (choice != 0);
+        input.close();
     }
 
     public static void ViewNutritionProgress() {
@@ -203,6 +215,7 @@ public class NutriTrack {
             System.out.println("(0 to go back to the main menu, any other number to generate another report):");
             choice = input.nextInt();
         } while (choice != 0);
+        input.close();
     }
 
     public static void GenerateNutritionReports() {
@@ -212,6 +225,7 @@ public class NutriTrack {
             System.out.println("(0 to go back to the main menu, any other number to generate another report):");
             choice = input.nextInt();
         } while (choice != 0);
+        input.close();
     }
 
     private static void initializeDefaultMeals() {
@@ -238,8 +252,13 @@ public class NutriTrack {
         loggedSnacks.add(new Snack("Trail Mix", 180, 6, 20, 10));
         loggedSnacks.add(new Snack("Protein Smoothie", 250, 20, 30, 5));
         loggedSnacks.add(new Snack("Hummus with Carrots", 150, 5, 18, 8));
-    }
 
+        //default Nutrition Goals
+        nutritionGoals = new NutritionGoals(2000, 150, 200, 50);
+
+        //default Current Nutrition
+        currentNutrition = new CurrentNutrition(loggedBreakfasts.get(0), loggedLunchs.get(0), loggedDinner.get(0), loggedSnacks.get(0));
+    }
 
     public static void DisplayMealTypes() {
         System.out.println("Select meal type:");
@@ -268,5 +287,16 @@ public class NutriTrack {
             System.out.println("(0 to go back to the main menu, any other number to view logged meals):");
             choice = input.nextInt();
         } while (choice != 0);
+        input.close();
+    }
+
+    public static void SetUpdateCurrentNutrition() {
+        Scanner input = new Scanner(System.in);
+        int choice = -1;
+        do {
+            System.out.println("(0 to go back to the main menu, any other number to set or update current nutrition):");
+            choice = input.nextInt();
+        } while (choice != 0);
+        input.close();
     }
 }
