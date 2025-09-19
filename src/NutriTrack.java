@@ -299,4 +299,41 @@ public class NutriTrack {
         } while (choice != 0);
         input.close();
     }
+     public static void SetUpdateNutritionGoals1() {
+    	try {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter new protein :");
+        double protein = input.nextDouble();
+
+        System.out.println("set fat target :");
+        double fat = input.nextDouble();
+        System.out.println("set calories target :");
+        double calories = input.nextDouble();
+
+
+        nutritionGoals.setProtein(protein);
+        nutritionGoals.setFats(fat);
+        nutritionGoals.setCalories(calories);
+    	}catch (Exception e) {
+            System.out.println("Sorry ! An error occur ");
+}
+    	
+    
+    }
+    
+    public static void ViewNutritionProgress1() {
+    	System.out.println("Your Progress");
+        System.out.println("Fats: " + currentNutrition.getFats() + "/" + nutritionGoals.getFats());
+        System.out.println("Protein: " + currentNutrition.getProtein() + "/" + nutritionGoals.getProtein());
+        System.out.println("Calories: " + currentNutrition.getCalories() + "/" + nutritionGoals.getCalories());
+    }
+    
+
+    public static void GenerateNutritionReports1() {
+    	System.out.println("Nutrition Report :");
+         currentNutrition.getBreakfast().displayMeal();
+         currentNutrition.getLunch().displayMeal();
+         currentNutrition.getDinner().displayMeal();
+         currentNutrition.getSnack().displayMeal();
+    }
 }
