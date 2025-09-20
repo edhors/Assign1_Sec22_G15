@@ -20,6 +20,8 @@ public class NutriTrack {
                 case 5: GenerateNutritionReports(); break;
                 case 6: ViewLoggedMeals(); break;
                 case 7: SetUpdateCurrentNutrition(); break;
+                case 8: initializeDataForAdvice();break;
+             
                 default:
                     System.out.println("Thank you for using CSC301's NutriTrack (A Personal Nutrition Tracker App). Have a healthy day!");
             }
@@ -338,4 +340,86 @@ public class NutriTrack {
          currentNutrition.getDinner().displayMeal();
          currentNutrition.getSnack().displayMeal();
     }
+ 
+ public static void initializeDataForAdvice(){
+		  
+		   Scanner input = new Scanner(System.in);
+		    double m;
+		    double h;
+		    
+		  while (true){
+		      System.out.println("Enter your Bodymass in kg: ");
+		      if(input.hasNextDouble()) {
+		    	  
+		    	  m = input.nextDouble();
+		    	  
+		    	  if(m>0) break;
+		      }else {
+		    	  input.next();
+		    	  }
+		      System.out.println("Please enter a positive number.");
+	  
+		 }
+		  
+		   
+		  while (true){
+		      System.out.println("Enter your Height in cm: ");
+		      
+		      if(input.hasNextDouble()) {
+		    	  
+		    	  h = input.nextDouble();
+		    	  
+		    	  if(h>0) break;
+		      }else {
+		    	  input.next();
+		    	  }
+		      System.out.println("Please enter a positive number.");
+		 }
+		  
+		  
+		  MealAdvice advice = new MealAdvice(m,h);
+
+    advice.setBMI();
+		  
+		  System.out.printf("BMI: %.1f%n", advice.getBMI());
+		  
+		  System.out.println(advice.getAdvice());
+  
+    input.close();
+	
 }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
