@@ -406,42 +406,46 @@ public class NutriTrack {
 	double totalCal = 0, totalP = 0, totalCarbs = 0, totalF = 0;
 	for(Meal M : todaysMeals){
 		totalCal = totalCal + M.getCalories();
-		toitalP = totalP + M.getProtein();
+		totalP = totalP + M.getProtein();
 		totalCarbs = totalCarbs + M.getCarbohydrates();
 		totalF = totalF + M.getFats();
 	}
 	System.out.println("==================================================");
-	if (totalCal > nutritionGoals.getCalories()){
-	System.out.println("You exceed your calorie intake by: ", +totalCal - nutritionGoals.getCalories());
-	}else if (totalCal ==  nutritionGoals.getCalories();) {
-		System.out.println("Goal Completed(Calories)");
-	} else {
-		System.out.println("Remaining Calories: ", +nutritionGoals.getCalories()-totalCal );
-	}
+	if (totalCal > nutritionGoals.getCalories()) {
+    System.out.println("You exceed your calorie intake by: " + (totalCal - nutritionGoals.getCalories()));
+} else if (totalCal == nutritionGoals.getCalories()) { 
+    System.out.println("Goal Completed (Calories)");
+} else {
+    System.out.println("Remaining Calories: " + (nutritionGoals.getCalories() - totalCal));
+}
+
 	
-	if (totalP > nutritionGoals.getProtein()){
-	System.out.println("You exceed your protein intake by: ", +totalP - nutritionGoals.getProtein();
-	}else if (totalP == nutritionGoals.getProtein() ) {
-		System.out.println("Goal Completed(Protein)");
-	} else {
-		System.out.println("Remaining Proteins: ",+nutritionGoals.getProtein()-totalP);
-	}
+	if (totalP > nutritionGoals.getProtein()) {
+    System.out.println("You exceed your protein intake by: " + (totalP - nutritionGoals.getProtein()));
+} else if (totalP == nutritionGoals.getProtein()) {
+    System.out.println("Goal Completed (Protein)");
+} else {
+    System.out.println("Remaining Proteins: "  + (nutritionGoals.getProtein() - totalP));
+}
+
 	
-	if (totalCarbs > nutritionGoals.getCarbohydrates();	){
-	System.out.println("You exceed your Carbohydrates intake by: ", +totalCarb - nutritionGoals.getCarbohydrates());
-	}else if (totalCarbs == nutritionGoals.getCarbohydrates()) {
-		System.out.println("Goal Completed(Carbohydrates)");
-	} else {
-		System.out.println("Remaining Carbohydrates: ",+nutritionGoals.getCarbohydrates()-totalCarbs);
-	}
+	if (totalCarbs > nutritionGoals.getCarbohydrates()) {
+    System.out.println("You exceed your Carbohydrates intake by: "+ (totalCarbs - nutritionGoals.getCarbohydrates()));
+} else if (totalCarbs == nutritionGoals.getCarbohydrates()) {
+    System.out.println("Goal Completed (Carbohydrates)");
+} else {
+    System.out.println("Remaining Carbohydrates: "+ (nutritionGoals.getCarbohydrates() - totalCarbs));
+}
+
 	
-	if (totalF >  nutritionGoals.getFats()){
-	System.out.println("You exceed your Fats intake by: ", +totalF - nutritionGoals.getFats());
-	}else if (totalF ==  nutritionGoals.setFats()) {
-		System.out.println("Goal Completed(Fats)");
-	} else {
-		System.out.println("Remaining Fats: ",+nutritionGoals.getFats() - totalF);
-	}
+	if (totalF > nutritionGoals.getFats()) {
+    System.out.println("You exceed your Fats intake by: "+ (totalF - nutritionGoals.getFats()));
+} else if (totalF == nutritionGoals.getFats()) {
+    System.out.println("Goal Completed (Fats)");
+} else {
+    System.out.println("Remaining Fats: "+ (nutritionGoals.getFats() - totalF));
+}
+
 	System.out.println("==================================================");
 	
 		 
