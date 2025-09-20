@@ -313,11 +313,13 @@ public class NutriTrack {
         double fat = input.nextDouble();
         System.out.println("set calories target :");
         double calories = input.nextDouble();
-
+        System.out.print("Enter your carbs: ");
+        double carbs = input.nextDouble();
 
         nutritionGoals.setProtein(protein);
         nutritionGoals.setFats(fat);
         nutritionGoals.setCalories(calories);
+		nutritionGoals.setCarbohydrates(carbs);	
     	}catch (Exception e) {
             System.out.println("Sorry ! An error occur ");
 }
@@ -327,9 +329,10 @@ public class NutriTrack {
     
     public static void ViewNutritionProgress1() {
     	System.out.println("Your Progress");
-        System.out.println("Fats: " + currentNutrition.getFats() + "/" + nutritionGoals.getFats());
-        System.out.println("Protein: " + currentNutrition.getProtein() + "/" + nutritionGoals.getProtein());
-        System.out.println("Calories: " + currentNutrition.getCalories() + "/" + nutritionGoals.getCalories());
+        System.out.println("Fats: " + currentNutrition.getFats() + "-" + nutritionGoals.getFats());
+        System.out.println("Protein: " + currentNutrition.getProtein() + "- " + nutritionGoals.getProtein());
+        System.out.println("Calories: " + currentNutrition.getCalories() + " -" + nutritionGoals.getCalories());
+		 System.out.println("Carbs: " + currentNutrition.getCarbohydrates() +" -"  nutritionGoals.getCarbohydrates());
     }
     
 
