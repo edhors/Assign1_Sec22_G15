@@ -397,7 +397,7 @@ public class NutriTrack {
     todaysMeals.addAll(loggedLunchs);
     todaysMeals.addAll(loggedDinner);
     todaysMeals.addAll(loggedSnacks);
-    return all;
+   
 	if (all.isEmpty()) {
         System.out.println("Meals are not added yet.");
         return;
