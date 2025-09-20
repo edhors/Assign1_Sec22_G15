@@ -4,6 +4,7 @@ import java.util.ArrayList;
 /* ADD Group Members' details below:
 Eduardo Horstmann 1091883
  Ali Mousa Tanbouz 1088413 
+ Alexey Gorshkov 1090711
 */ 
 public class NutriTrack {
     public static void main(String[] args) {        
@@ -17,7 +18,7 @@ public class NutriTrack {
                 case 2: UpdateMeal(); break;
                 case 3: SetUpdateNutritionGoals(); break;
                 case 4: ViewNutritionProgress(); break;
-                case 5: GenerateNutritionReports(); break;
+                case 5: createDailyReport(); break;
                 case 6: ViewLoggedMeals(); break;
                 case 7: SetUpdateCurrentNutrition(); break;
                 case 8: initializeDataForAdvice();break;
@@ -391,25 +392,25 @@ public class NutriTrack {
     input.close();
 	
 }
-	public static void createDayliReport() {
-	
+	public static void createDailyReport() {
+	todaysMeals.clear();
 	todaysMeals.addAll(loggedBreakfasts);
     todaysMeals.addAll(loggedLunchs);
     todaysMeals.addAll(loggedDinner);
     todaysMeals.addAll(loggedSnacks);
    
-	if (all.isEmpty()) {
+	if (todaysMeals.isEmpty()) {
         System.out.println("Meals are not added yet.");
         return;
     }
 	double totalCal = 0, totalP = 0, totalCarbs = 0, totalF = 0;
-	for(int M : todaysMeals){
-		totalCal = totalCal + Meal.getCalories();
-		toitalP = totalP + Meal.getProtein();
-		totalCarbs = totalCarbs + Meal.getCarbohydrates();
-		totalF = totalF + Meal.getFats();
+	for(Meal M : todaysMeals){
+		totalCal = totalCal + M.getCalories();
+		toitalP = totalP + M.getProtein();
+		totalCarbs = totalCarbs + M.getCarbohydrates();
+		totalF = totalF + M.getFats();
 	}
-	
+	System.out.println("==================================================");
 	if (totalCal > nutritionGoals.getCalories()){
 	System.out.println("You exceed your calorie intake by: ", +totalCal - nutritionGoals.getCalories());
 	}else if (totalCal ==  nutritionGoals.getCalories();) {
@@ -441,7 +442,7 @@ public class NutriTrack {
 	} else {
 		System.out.println("Remaining Fats: ",+nutritionGoals.getFats() - totalF);
 	}
-	
+	System.out.println("==================================================");
 	
 		 
 		
