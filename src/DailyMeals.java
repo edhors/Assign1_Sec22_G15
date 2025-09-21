@@ -57,19 +57,19 @@ public class DailyMeals {
         return fats;
     }
 
-    public void setBreakfast(Breakfast breakfast) {
+    public void setBreakfast(Meal breakfast) {
         this.breakfast = breakfast;
     }
 
-    public void setLunch(Lunch lunch) {
+    public void setLunch(Meal lunch) {
         this.lunch = lunch;
     }
 
-    public void setDinner(Dinner dinner) {
+    public void setDinner(Meal dinner) {
         this.dinner = dinner;
     }   
 
-    public void setSnack(Snack snack) {
+    public void setSnack(Meal snack) {
         this.snack = snack;
     }
 }
