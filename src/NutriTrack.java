@@ -21,7 +21,7 @@ public class NutriTrack {
                 case 5: GenerateNutritionReports(); break;
                 case 6: ViewLoggedMeals(); break;
                 case 7: SetUpdateDailyMeals(); break;
-                case 8: initializeDataForAdvice();break;
+                case 8: MealAdvice();break;
              
                 default:
                     System.out.println("Thank you for using CSC301's NutriTrack (A Personal Nutrition Tracker App). Have a healthy day!");
@@ -372,50 +372,61 @@ public class NutriTrack {
     }
 
     // 8. Get meal advice.
-    public static void initializeDataForAdvice(){ 
+    public static void MealAdvice(){ 
+        int choice = -1;
+        do {
             double m;
             double h;
+                
+            try {
+                while (true){
+                    System.out.println("Enter your Bodymass in kg: ");
+                    if(input.hasNextDouble()) {
+                        
+                        m = input.nextDouble();
+                        
+                        if(m>0) break;
+                    }else {
+                        input.next();
+                        }
+                    System.out.println("Please enter a positive number.");
             
-        while (true){
-            System.out.println("Enter your Bodymass in kg: ");
-            if(input.hasNextDouble()) {
-                
-                m = input.nextDouble();
-                
-                if(m>0) break;
-            }else {
-                input.next();
                 }
-            System.out.println("Please enter a positive number.");
-    
-        }
-        
-        
-        while (true){
-            System.out.println("Enter your Height in cm: ");
-            
-            if(input.hasNextDouble()) {
                 
-                h = input.nextDouble();
                 
-                if(h>0) break;
-            }else {
-                input.next();
+                while (true){
+                    System.out.println("Enter your Height in cm: ");
+                    
+                    if(input.hasNextDouble()) {
+                        
+                        h = input.nextDouble();
+                        
+                        if(h>0) break;
+                    }else {
+                        input.next();
+                        }
+                    System.out.println("Please enter a positive number.");
                 }
-            System.out.println("Please enter a positive number.");
-        }
-            
-            
-        MealAdvice advice = new MealAdvice(m,h);
 
-        advice.setBMI();
-            
-        System.out.printf("BMI: %.1f%n", advice.getBMI());
-        
-        System.out.println(advice.getAdvice());
-    
-        input.close();
-        
+                MealAdvice advice = new MealAdvice(m,h);
+
+                advice.setBMI();
+                    
+                System.out.printf("BMI: %.1f%n", advice.getBMI());
+                
+                System.out.println(advice.getAdvice());
+
+            } catch (Exception e) {
+                System.out.println("Invalid input");
+            }
+            System.out.println("(0 to go back to the main menu, any other number to get meal advice):");
+            try {
+                choice = input.nextInt();
+            } catch (Exception e) {
+                System.out.println("");
+            }
+            input.nextLine();   
+        } while (choice != 0);
     }
 
     //helper method for displaying meal types
