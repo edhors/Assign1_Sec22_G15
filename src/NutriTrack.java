@@ -18,9 +18,9 @@ public class NutriTrack {
                 case 2: UpdateMeal(); break;
                 case 3: SetUpdateNutritionGoals(); break;
                 case 4: ViewNutritionProgress(); break;
-                case 5: createDailyReport(); break;
+                case 5: GenerateNutritionReports(); break;
                 case 6: ViewLoggedMeals(); break;
-                case 7: SetUpdateCurrentNutrition(); break;
+                case 7: SetUpdateDailyMeals(); break;
                 case 8: initializeDataForAdvice();break;
              
                 default:
@@ -34,7 +34,7 @@ public class NutriTrack {
     public static ArrayList<Meal> loggedDinner = new ArrayList<>();
     public static ArrayList<Meal> loggedSnacks = new ArrayList<>();
     public static NutritionGoals nutritionGoals = new NutritionGoals(0, 0, 0, 0);
-    public static CurrentNutrition currentNutrition = new CurrentNutrition(null, null, null, null);
+    public static DailyMeals dailyMeals;
 
     public static void DisplayMenu() {
         System.out.println("------------------------------------------------------------");
@@ -46,7 +46,8 @@ public class NutriTrack {
         System.out.println("4. View progress toward nutrition goals.");
         System.out.println("5. Generate nutrition reports (daily, weekly, monthly)");
         System.out.println("6. View logged meals.");
-        System.out.println("7. Set or update current nutrition.");
+        System.out.println("7. Set or update daily meals.");
+        System.out.println("8. Get meal advice.");
         System.out.println("0. Exit");
         System.out.println("------------------------------------------------------------");
     }
@@ -55,10 +56,9 @@ public class NutriTrack {
         Scanner input = new Scanner(System.in);
         int choice;
         do {
-            System.out.println("Your Choice (0-7):");
+            System.out.println("Your Choice (0-8):");
             choice = input.nextInt();
-        } while (choice > 7);
-        input.close();
+        } while (choice > 8);
         return choice;
     }
 
@@ -197,73 +197,6 @@ public class NutriTrack {
         input.close();
     }
 
-    public static void SetUpdateNutritionGoals() {
-        Scanner input = new Scanner(System.in);
-        int choice = -1;
-        
-        do {
-            try {
-                
-            } catch (Exception e) {
-                System.out.println("");
-            }
-            input.nextLine();
-        } while (choice != 0);
-        input.close();
-    }
-
-    public static void ViewNutritionProgress() {
-        Scanner input = new Scanner(System.in);
-        int choice;
-        do {
-            System.out.println("(0 to go back to the main menu, any other number to generate another report):");
-            choice = input.nextInt();
-        } while (choice != 0);
-        input.close();
-    }
-
-    public static void GenerateNutritionReports() {
-        Scanner input = new Scanner(System.in);
-        int choice;
-        do {
-            System.out.println("(0 to go back to the main menu, any other number to generate another report):");
-            choice = input.nextInt();
-        } while (choice != 0);
-        input.close();
-    }
-
-    private static void initializeDefaultMeals() {
-        //default Breakfasts
-        loggedBreakfasts.add(new Breakfast("Oatmeal with Berries", 350, 12, 60, 8));
-        loggedBreakfasts.add(new Breakfast("Scrambled Eggs & Toast", 420, 20, 35, 15));
-        loggedBreakfasts.add(new Breakfast("Greek Yogurt Parfait", 300, 15, 45, 10));
-        loggedBreakfasts.add(new Breakfast("Breakfast Burrito", 550, 25, 65, 20));
-
-        //default Lunches
-        loggedLunchs.add(new Lunch("Grilled Chicken Salad", 450, 35, 25, 12));
-        loggedLunchs.add(new Lunch("Turkey Sandwich", 480, 28, 55, 15));
-        loggedLunchs.add(new Lunch("Quinoa Buddha Bowl", 520, 18, 80, 18));
-        loggedLunchs.add(new Lunch("Tuna Wrap", 400, 30, 45, 14));
-
-        //default Dinners
-        loggedDinner.add(new Dinner("Salmon with Rice", 650, 40, 70, 22));
-        loggedDinner.add(new Dinner("Pasta Primavera", 550, 18, 90, 15));
-        loggedDinner.add(new Dinner("Stir-Fry Tofu", 480, 25, 60, 18));
-        loggedDinner.add(new Dinner("Lean Beef Steak", 600, 45, 40, 25));
-
-        //default Snacks
-        loggedSnacks.add(new Snack("Apple with Peanut Butter", 200, 7, 25, 8));
-        loggedSnacks.add(new Snack("Trail Mix", 180, 6, 20, 10));
-        loggedSnacks.add(new Snack("Protein Smoothie", 250, 20, 30, 5));
-        loggedSnacks.add(new Snack("Hummus with Carrots", 150, 5, 18, 8));
-
-        //default Nutrition Goals
-        nutritionGoals = new NutritionGoals(2000, 150, 200, 50);
-
-        //default Current Nutrition
-        //currentNutrition = new CurrentNutrition(loggedBreakfasts.get(0), loggedLunchs.get(0), loggedDinner.get(0), loggedSnacks.get(0));
-    }
-
     public static void DisplayMealTypes() {
         System.out.println("Select meal type:");
         System.out.println("1. Breakfast");
@@ -294,7 +227,7 @@ public class NutriTrack {
         input.close();
     }
 
-    public static void SetUpdateCurrentNutrition() {
+    public static void SetUpdateDailyMeals() {
         Scanner input = new Scanner(System.in);
         int choice = -1;
         do {
@@ -304,154 +237,192 @@ public class NutriTrack {
         input.close();
     }
 
-     public static void SetUpdateNutritionGoals1() {
-    	try {
+    public static void SetUpdateNutritionGoals() {
         Scanner input = new Scanner(System.in);
-        System.out.println("Enter new protein :");
-        double protein = input.nextDouble();
-
-        System.out.println("set fat target :");
-        double fat = input.nextDouble();
-        System.out.println("set calories target :");
-        double calories = input.nextDouble();
-        System.out.print("Enter your carbs: ");
-        double carbs = input.nextDouble();
-
-        nutritionGoals.setProtein(protein);
-        nutritionGoals.setFats(fat);
-        nutritionGoals.setCalories(calories);
-		nutritionGoals.setCarbohydrates(carbs);	
-    	}catch (Exception e) {
-            System.out.println("Sorry ! An error occur ");
-}
-    	
+        int choice = -1;
+        do {
+            try {
+                System.out.println("Enter new protein :");
+                double protein = input.nextDouble();
     
+                System.out.println("set fat target :");
+                double fat = input.nextDouble();
+                System.out.println("set calories target :");
+                double calories = input.nextDouble();
+                System.out.print("Enter your carbs: ");
+                double carbs = input.nextDouble();
+    
+                nutritionGoals.setProtein(protein);
+                nutritionGoals.setFats(fat);
+                nutritionGoals.setCalories(calories);
+                nutritionGoals.setCarbohydrates(carbs);	
+            } catch (Exception e) {
+                System.out.println("Invalid input");
+            }
+            System.out.println("(0 to go back to the main menu, any other number to set or update nutrition goals):");
+            choice = input.nextInt();
+        } while (choice != 0);
+        input.close();
     }
     
-    public static void ViewNutritionProgress1() {
-    	System.out.println("Your Progress");
-        System.out.println("Fats: " + currentNutrition.getFats() + "-" + nutritionGoals.getFats());
-        System.out.println("Protein: " + currentNutrition.getProtein() + "- " + nutritionGoals.getProtein());
-        System.out.println("Calories: " + currentNutrition.getCalories() + " -" + nutritionGoals.getCalories());
-		 System.out.println("Carbs: " + currentNutrition.getCarbohydrates() +" -"  nutritionGoals.getCarbohydrates());
+    public static void ViewNutritionProgress() {
+    	Scanner input = new Scanner(System.in);
+        int choice = -1;
+        do {
+            System.out.println("Your Progress");
+            System.out.println("Fats: " + dailyMeals.getFats() + "-" + nutritionGoals.getFats());
+            System.out.println("Protein: " + dailyMeals.getProtein() + "- " + nutritionGoals.getProtein());
+            System.out.println("Calories: " + dailyMeals.getCalories() + " -" + nutritionGoals.getCalories());
+            System.out.println("Carbs: " + dailyMeals.getCarbohydrates() +" -" + nutritionGoals.getCarbohydrates());
+            System.out.println("(0 to go back to the main menu, any other number to view nutrition progress):");
+            choice = input.nextInt();
+        } while (choice != 0);
+        input.close();
     }
     
 
     public static void GenerateNutritionReports1() {
     	System.out.println("Nutrition Report :");
-         currentNutrition.getBreakfast().displayMeal();
-         currentNutrition.getLunch().displayMeal();
-         currentNutrition.getDinner().displayMeal();
-         currentNutrition.getSnack().displayMeal();
+         dailyMeals.getBreakfast().displayMeal();
+         dailyMeals.getLunch().displayMeal();
+         dailyMeals.getDinner().displayMeal();
+         dailyMeals.getSnack().displayMeal();
     }
  
- public static void initializeDataForAdvice(){
-		  
-		   Scanner input = new Scanner(System.in);
-		    double m;
-		    double h;
-		    
-		  while (true){
-		      System.out.println("Enter your Bodymass in kg: ");
-		      if(input.hasNextDouble()) {
-		    	  
-		    	  m = input.nextDouble();
-		    	  
-		    	  if(m>0) break;
-		      }else {
-		    	  input.next();
-		    	  }
-		      System.out.println("Please enter a positive number.");
-	  
-		 }
-		  
-		   
-		  while (true){
-		      System.out.println("Enter your Height in cm: ");
-		      
-		      if(input.hasNextDouble()) {
-		    	  
-		    	  h = input.nextDouble();
-		    	  
-		    	  if(h>0) break;
-		      }else {
-		    	  input.next();
-		    	  }
-		      System.out.println("Please enter a positive number.");
-		 }
-		  
-		  
-		  MealAdvice advice = new MealAdvice(m,h);
+    public static void initializeDataForAdvice(){
+            
+        Scanner input = new Scanner(System.in);
+            double m;
+            double h;
+            
+        while (true){
+            System.out.println("Enter your Bodymass in kg: ");
+            if(input.hasNextDouble()) {
+                
+                m = input.nextDouble();
+                
+                if(m>0) break;
+            }else {
+                input.next();
+                }
+            System.out.println("Please enter a positive number.");
+    
+        }
+        
+        
+        while (true){
+            System.out.println("Enter your Height in cm: ");
+            
+            if(input.hasNextDouble()) {
+                
+                h = input.nextDouble();
+                
+                if(h>0) break;
+            }else {
+                input.next();
+                }
+            System.out.println("Please enter a positive number.");
+        }
+            
+            
+        MealAdvice advice = new MealAdvice(m,h);
 
-    advice.setBMI();
-		  
-		  System.out.printf("BMI: %.1f%n", advice.getBMI());
-		  
-		  System.out.println(advice.getAdvice());
-  
-    input.close();
-	
-}
-	public static void createDailyReport() {
-	todaysMeals.clear();
-	todaysMeals.addAll(loggedBreakfasts);
-    todaysMeals.addAll(loggedLunchs);
-    todaysMeals.addAll(loggedDinner);
-    todaysMeals.addAll(loggedSnacks);
-   
-	if (todaysMeals.isEmpty()) {
-        System.out.println("Meals are not added yet.");
-        return;
+        advice.setBMI();
+            
+        System.out.printf("BMI: %.1f%n", advice.getBMI());
+        
+        System.out.println(advice.getAdvice());
+    
+        input.close();
+        
     }
-	double totalCal = 0, totalP = 0, totalCarbs = 0, totalF = 0;
-	for(Meal M : todaysMeals){
-		totalCal = totalCal + M.getCalories();
-		totalP = totalP + M.getProtein();
-		totalCarbs = totalCarbs + M.getCarbohydrates();
-		totalF = totalF + M.getFats();
-	}
-	System.out.println("==================================================");
-	if (totalCal > nutritionGoals.getCalories()) {
-    System.out.println("You exceed your calorie intake by: " + (totalCal - nutritionGoals.getCalories()));
-} else if (totalCal == nutritionGoals.getCalories()) { 
-    System.out.println("Goal Completed (Calories)");
-} else {
-    System.out.println("Remaining Calories: " + (nutritionGoals.getCalories() - totalCal));
-}
+	public static void GenerateNutritionReports() {
+        Scanner input = new Scanner(System.in);
+        int choice = -1;
+        do {
+            if (dailyMeals.getBreakfast() == null || dailyMeals.getLunch() == null || dailyMeals.getDinner() == null || dailyMeals.getSnack() == null) {
+                System.out.println("Meals are not added yet.");
+            }
+            else {
+                double totalCal = dailyMeals.getCalories();
+                double totalP = dailyMeals.getProtein();
+                double totalCarbs = dailyMeals.getCarbohydrates();
+                double totalF = dailyMeals.getFats();
+                System.out.println("==================================================");
+                    if (totalCal > nutritionGoals.getCalories()) {
+                    System.out.println("You exceed your calorie intake by: " + (totalCal - nutritionGoals.getCalories()));
+                } else if (totalCal == nutritionGoals.getCalories()) { 
+                    System.out.println("Goal Completed (Calories)");
+                } else {
+                    System.out.println("You must intake more calories: " + (nutritionGoals.getCalories() - totalCal));
+                }
+        
+                
+                if (totalP > nutritionGoals.getProtein()) {
+                    System.out.println("You exceed your protein intake by: " + (totalP - nutritionGoals.getProtein()) + "g");
+                } else if (totalP == nutritionGoals.getProtein()) {
+                    System.out.println("Goal Completed (Protein)");
+                } else {
+                    System.out.println("You must intake more proteins: "  + (nutritionGoals.getProtein() - totalP) + "g");
+                }
+        
+                
+                if (totalCarbs > nutritionGoals.getCarbohydrates()) {
+                    System.out.println("You exceed your Carbohydrates intake by: "+ (totalCarbs - nutritionGoals.getCarbohydrates()) + "g");
+                } else if (totalCarbs == nutritionGoals.getCarbohydrates()) {
+                    System.out.println("Goal Completed (Carbohydrates)");
+                } else {
+                    System.out.println("You must intake more carbohydrates: "+ (nutritionGoals.getCarbohydrates() - totalCarbs) + "g");
+                }
+        
+                
+                if (totalF > nutritionGoals.getFats()) {
+                    System.out.println("You exceed your Fats intake by: "+ (totalF - nutritionGoals.getFats()) + "g");
+                } else if (totalF == nutritionGoals.getFats()) {
+                    System.out.println("Goal Completed (Fats)");
+                } else {
+                    System.out.println("You must intake more fats: "+ (nutritionGoals.getFats() - totalF) + "g");
+                }
+        
+                System.out.println("==================================================");  
+            }
+            System.out.println("(0 to go back to the main menu, any other number to generate another report):");
+            choice = input.nextInt();
+        } while (choice != 0);
+        input.close();
+        
+    }
+    private static void initializeDefaultMeals() {
+        //default Breakfasts
+        loggedBreakfasts.add(new Breakfast("Oatmeal with Berries", 350, 12, 60, 8));
+        loggedBreakfasts.add(new Breakfast("Scrambled Eggs & Toast", 420, 20, 35, 15));
+        loggedBreakfasts.add(new Breakfast("Greek Yogurt Parfait", 300, 15, 45, 10));
+        loggedBreakfasts.add(new Breakfast("Breakfast Burrito", 550, 25, 65, 20));
 
-	
-	if (totalP > nutritionGoals.getProtein()) {
-    System.out.println("You exceed your protein intake by: " + (totalP - nutritionGoals.getProtein()));
-} else if (totalP == nutritionGoals.getProtein()) {
-    System.out.println("Goal Completed (Protein)");
-} else {
-    System.out.println("Remaining Proteins: "  + (nutritionGoals.getProtein() - totalP));
-}
+        //default Lunches
+        loggedLunchs.add(new Lunch("Grilled Chicken Salad", 450, 35, 25, 12));
+        loggedLunchs.add(new Lunch("Turkey Sandwich", 480, 28, 55, 15));
+        loggedLunchs.add(new Lunch("Quinoa Buddha Bowl", 520, 18, 80, 18));
+        loggedLunchs.add(new Lunch("Tuna Wrap", 400, 30, 45, 14));
 
-	
-	if (totalCarbs > nutritionGoals.getCarbohydrates()) {
-    System.out.println("You exceed your Carbohydrates intake by: "+ (totalCarbs - nutritionGoals.getCarbohydrates()));
-} else if (totalCarbs == nutritionGoals.getCarbohydrates()) {
-    System.out.println("Goal Completed (Carbohydrates)");
-} else {
-    System.out.println("Remaining Carbohydrates: "+ (nutritionGoals.getCarbohydrates() - totalCarbs));
-}
+        //default Dinners
+        loggedDinner.add(new Dinner("Salmon with Rice", 650, 40, 70, 22));
+        loggedDinner.add(new Dinner("Pasta Primavera", 550, 18, 90, 15));
+        loggedDinner.add(new Dinner("Stir-Fry Tofu", 480, 25, 60, 18));
+        loggedDinner.add(new Dinner("Lean Beef Steak", 600, 45, 40, 25));
 
-	
-	if (totalF > nutritionGoals.getFats()) {
-    System.out.println("You exceed your Fats intake by: "+ (totalF - nutritionGoals.getFats()));
-} else if (totalF == nutritionGoals.getFats()) {
-    System.out.println("Goal Completed (Fats)");
-} else {
-    System.out.println("Remaining Fats: "+ (nutritionGoals.getFats() - totalF));
-}
+        //default Snacks
+        loggedSnacks.add(new Snack("Apple with Peanut Butter", 200, 7, 25, 8));
+        loggedSnacks.add(new Snack("Trail Mix", 180, 6, 20, 10));
+        loggedSnacks.add(new Snack("Protein Smoothie", 250, 20, 30, 5));
+        loggedSnacks.add(new Snack("Hummus with Carrots", 150, 5, 18, 8));
 
-	System.out.println("==================================================");
-	
-		 
-		
-		
-}
+        //default Nutrition Goals
+        nutritionGoals = new NutritionGoals(2000, 150, 200, 50);
+
+        //default Current Nutrition
+        dailyMeals = new DailyMeals(loggedBreakfasts.get(0), loggedLunchs.get(0), loggedDinner.get(0), loggedSnacks.get(0));
+    }
 }
 
 
