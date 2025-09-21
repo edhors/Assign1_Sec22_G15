@@ -4,17 +4,17 @@ Ali Mousa Tanbouz 1088413
 Alexey Gorshkov 1090711
 */ 
 
-public class CurrentNutrition {
-    private Breakfast breakfast;
-    private Lunch lunch;
-    private Dinner dinner;
-    private Snack snack;
+public class DailyMeals {
+    private Meal breakfast;
+    private Meal lunch;
+    private Meal dinner;
+    private Meal snack;
     private double calories;
     private double protein;
     private double carbohydrates;
     private double fats;
 
-    public CurrentNutrition(Breakfast breakfast, Lunch lunch, Dinner dinner, Snack snack) {
+    public DailyMeals(Meal breakfast, Meal lunch, Meal dinner, Meal snack) {
         this.breakfast = breakfast;
         this.lunch = lunch;
         this.dinner = dinner;
@@ -25,19 +25,19 @@ public class CurrentNutrition {
         this.fats = breakfast.getFats() + lunch.getFats() + dinner.getFats() + snack.getFats();
     }
 
-    public Breakfast getBreakfast() {
+    public Meal getBreakfast() {
         return breakfast;
     }
 
-    public Lunch getLunch() {
+    public Meal getLunch() {
         return lunch;
     }
 
-    public Dinner getDinner() {
+    public Meal getDinner() {
         return dinner;
     }
 
-    public Snack getSnack() {
+    public Meal getSnack() {
         return snack;
     }
 
