@@ -200,14 +200,14 @@ public class NutriTrack {
         int choice = -1;
         do {
             try {
-                System.out.println("Enter new protein :");
+                System.out.print("Enter protein target: ");
                 double protein = input.nextDouble();
     
-                System.out.println("set fat target :");
+                System.out.print("Enter fat target: ");
                 double fat = input.nextDouble();
-                System.out.println("set calories target :");
+                System.out.print("Enter calories target: ");
                 double calories = input.nextDouble();
-                System.out.print("Enter your carbs: ");
+                System.out.print("Enter carbohydrates target: ");
                 double carbs = input.nextDouble();
     
                 nutritionGoals.setProtein(protein);
