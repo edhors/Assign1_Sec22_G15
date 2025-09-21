@@ -261,7 +261,7 @@ public class NutriTrack {
         nutritionGoals = new NutritionGoals(2000, 150, 200, 50);
 
         //default Current Nutrition
-        currentNutrition = new CurrentNutrition(loggedBreakfasts.get(0), loggedLunchs.get(0), loggedDinner.get(0), loggedSnacks.get(0));
+        //currentNutrition = new CurrentNutrition(loggedBreakfasts.get(0), loggedLunchs.get(0), loggedDinner.get(0), loggedSnacks.get(0));
     }
 
     public static void DisplayMealTypes() {

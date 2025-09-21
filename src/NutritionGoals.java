@@ -1,3 +1,9 @@
+/* ADD Group Members' details below:
+Eduardo Horstmann 1091883
+Ali Mousa Tanbouz 1088413 
+Alexey Gorshkov 1090711
+*/ 
+
 public class NutritionGoals extends Meal {
     public NutritionGoals(double calories, double protein, double carbohydrates, double fats) {
         super("Nutrition Goals", calories, protein, carbohydrates, fats);
