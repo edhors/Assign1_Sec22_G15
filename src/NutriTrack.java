@@ -408,7 +408,7 @@ public class NutriTrack {
                     System.out.println("Please enter a positive number.");
                 }
 
-                MealAdvice advice = new MealAdvice(m,h);
+                MealAdvice advice = new MealAdvice(m,h/100);
 
                 advice.setBMI();
                     
